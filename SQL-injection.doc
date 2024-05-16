@@ -1,0 +1,33 @@
+﻿Đi qua về lý thuyết 
+
+SQL injection là một kỹ thuật tấn công phổ biến trong lập trình web, nơi kẻ tấn công chèn các câu lệnh SQL bất hợp pháp vào các trường nhập liệu của ứng dụng web để thực hiện các thao tác không được phép trên cơ sở dữ liệu.
+
+Ví dụ, giả sử bạn có một biểu mẫu đăng nhập trên trang web của mình, và bạn sử dụng một truy vấn SQL để kiểm tra thông tin đăng nhập như sau:
+    SELECT * FROM users WHERE username = '$_POST[username]' AND password = '$_POST[password]'
+
+Nếu kẻ tấn công chèn vào ô nhập liệu của username một chuỗi như sau:
+    ' OR '1'='1
+
+Thì truy vấn SQL sẽ trở thành:
+    SELECT * FROM users WHERE username = '' OR '1'='1' AND password = '$_POST[password]'
+
+Trong trường hợp này, điều kiện '1'='1' luôn đúng, nên điều này sẽ khiến truy vấn trả về tất cả các bản ghi trong bảng "users", cho phép kẻ tấn công đăng nhập mà không cần biết tài khoản hoặc mật khẩu hợp lệ.
+
+Đây chỉ là một ví dụ cơ bản, nhưng SQL injection có thể được sử dụng để thực hiện nhiều loại tấn công khác nhau như lấy dữ liệu nhạy cảm, xóa hoặc sửa đổi dữ liệu, thậm chí kiểm soát hoàn toàn hệ thống cơ sở dữ liệu. Điều quan trọng là luôn kiểm tra và xử lý đầu vào từ người dùng một cách an toàn để tránh các cuộc tấn công như vậy.
+
+=======================================================================================================================================================================================================
+
+                                          ___   ___                          
+    / /        // | |     //   ) ) /__  ___/ / /    /|    //| |     //   / / 
+   / /        //__| |    //___/ /    / /    / /    //|   // | |    //____    
+  / /        / ___  |   / __  (     / /    / /    // |  //  | |   / ____     
+ / /        //    | |  //    ) )   / /    / /    //  | //   | |  //          
+/ /____/ / //     | | //____/ /   / /  __/ /___ //   |//    | | //____/ /  
+
+
+
+Bài 1 : https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data
+    Chắc chắn rồi , nhìn qua chả biết phải bắt đầu từ đâu 
+
+
+

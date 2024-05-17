@@ -37,5 +37,12 @@ Bài 2 : https://portswigger.net/web-security/sql-injection/lab-login-bypass
     username: 'or 1=1--
     password: 'or 1=1--
 
-Bài 3 : https://portswigger.net/web-security/sql-injection/lab-sql-injection-with-filter-bypass-via-xml-encoding
-    Bài này cao hơn chút nhé 
+Bài 3 : https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle
+    Bài này sử dụng UNION
+    Vì sao lại biết được sử dụng UNION -> chắc có lẽ đáp án là thử thử các trường hợp 
+        UNION là câu lệnh nối tiếp câu truy vấn SQL trong MySQL,PostgreSQL, SQLite, Microsoft SQL Server, Oracle Database ( chatgpt bảo thế ) 
+    UNION là keyword nối 2 câu truy vấn với nhau. Nhưng SELECT có thể bừa được nhưng FROM thì biết bảng nào mà điền để cho truy vấn hợp lệ
+        => dùng Table mặc định DUAL 
+    Thêm payload 'UNION+SELECT+NULL,NULL+FROM+DUAL--
+        Số lượng giá trị "NULL" tuỳ thuộc vào số cột của table hiện tại đang truy vấn sau chứ UNION 
+        

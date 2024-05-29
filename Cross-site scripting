@@ -45,10 +45,19 @@ Bài 2 : https://portswigger.net/web-security/cross-site-scripting/stored/lab-ht
         <script>alert(1)</script>
       1 lần nữa script thủy tổ lên tiếng 
 
-Bài 3 https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-document-write-sink
+Bài 3 : https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-document-write-sink
     Đề bài bài này lắm chữ tiếng anh quá, mình sở trưởng ngu tiếng anh nên là
         Nó bảo là lab này chứa DOM-based XSS ở phần search. dùng document.write và location.search có thể làm chủ thiên hạ 
           Sử dụng script thủy tổ không có tác dụng, quá hung hãn , phải mở giải ra xem thôi 
             Dumaconcakgiz why wtf 
               "><svg onload=alert(1)>
-                sao payload này hoạt động đc 
+                sao payload này hoạt động đc. À ban đầu méo hiểu đâu. nhưng hóa ra là nó tương tác với thẻ img ở phía dưới bảo sao 
+              Ví dụ nhập aaaaa thì thẻ img sẽ là <img src="/resources/images/tracker.gif?searchTerms=aaaaa">
+                Thừa thằng xông lên : "><script>alert(1)</script>
+                  Done , script thủy tổ là vô cmn địch 
+
+Bài 4 : https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-innerhtml-sink
+    Lỗi ở phần search 
+      Bài này khá là tịt 
+        <img src=1 onerror=alert(1)> 
+    Đến đây thôi đã , về nhà làm tiếp 

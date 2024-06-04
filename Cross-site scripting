@@ -61,3 +61,4 @@ Bài 4 : https://portswigger.net/web-security/cross-site-scripting/dom-based/lab
       Bài này khá là tịt 
         <img src=1 onerror=alert(1)> 
     Đến đây thôi đã , về nhà làm tiếp 
+    0h35p ngày 5/5 . Đã hiểu sơ qua nhưng cần tìm hiểu kĩ hơn -> hôm sau tìm writeup nhé 

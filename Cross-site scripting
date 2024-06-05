@@ -62,3 +62,19 @@ Bài 4 : https://portswigger.net/web-security/cross-site-scripting/dom-based/lab
         <img src=1 onerror=alert(1)> 
     Đến đây thôi đã , về nhà làm tiếp 
     0h35p ngày 5/5 . Đã hiểu sơ qua nhưng cần tìm hiểu kĩ hơn -> hôm sau tìm writeup nhé 
+        Với payload trên có thể thấy được src=1 không phải là 1 hình ảnh nên xảy ra lỗi kích hoạt onerror lên. 
+
+                    function doSearchQuery(query) {
+                                document.getElementById('searchMessage').innerHTML = query;
+                            }
+                            var query = (new URLSearchParams(window.location.search)).get('search');
+                            if(query) {
+                                doSearchQuery(query);
+                            }
+        Nhìn đoạn js này đi. Lỗi XSS ở đây vì giá trị query được lấy từ id searchMessage từ html 
+          => Chốt vấn đề ở đây là dùng innerHTML sẽ không an toàn thay vào đó textContent sẽ an toàn 
+            innerHTML Hành vi: Trình duyệt sẽ phân tích và thực thi đoạn mã <script>, dẫn đến việc hiển thị hộp thoại cảnh báo với nội dung 'XSS'. Đây là một lỗ hổng bảo mật nghiêm trọng.
+            textContent Hành vi: Trình duyệt sẽ hiển thị toàn bộ chuỗi <script>alert('XSS');</script> dưới dạng văn bản thuần túy, mà không thực thi đoạn mã này. Điều này an toàn hơn và ngăn chặn các cuộc tấn công XSS.
+        Tưởng xong rồi đúng không , nhưng như này là chưa đủ đâu 
+            Thực tế bài lab này không thể sử dụng script thủy tổ <script>alert(1)</script> vì sao ? 
+              
